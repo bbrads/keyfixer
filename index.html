@@ -51,7 +51,7 @@ ul{list-style:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition-duration:.01ms!important;animation-duration:.01ms!important}
-  .brand-track{animation:none!important}
+  .brand-track{animation-duration:46s!important}
 }
 
 /* ============ LAYOUT ============ */
@@ -120,9 +120,14 @@ ul{list-style:none}
 .brand-track{
   display:flex;align-items:center;gap:44px;width:max-content;
   animation:brand-scroll 46s linear infinite;
+  will-change:transform;
 }
 .brand-track img{width:80px;height:44px;object-fit:contain;flex:0 0 auto}
-@keyframes brand-scroll{to{transform:translateX(-50%)}}
+/* loop distance = 15 logos x 80px + 15 gaps x 44px */
+@keyframes brand-scroll{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-1860px,0,0)}
+}
 .brands::after{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(to right,

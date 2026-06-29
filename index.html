@@ -79,15 +79,16 @@ ul{list-style:none}
   padding:9px 15px;font-size:14px;gap:7px;
 }
 .btn--mini img{width:20px;height:20px}
-/* Primary hero CTA — vivid green so it pops off the dark bg without looking cheap */
+/* Primary hero CTA — rich green with white text; pops off the dark bg, stays legible */
 .btn--hero{
-  background:#2ec27e;color:#06241a;
-  border:1px solid #74e2ad;
-  font-size:21px;font-weight:800;padding:16px 18px;white-space:nowrap;
-  box-shadow:0 12px 26px -10px rgba(46,194,126,.65), inset 0 1px 0 rgba(255,255,255,.35);
+  background:linear-gradient(180deg,#22a463 0%,#15894e 100%);color:#fff;
+  border:1px solid #57cf93;
+  font-size:21px;font-weight:800;padding:15px 18px;white-space:nowrap;
+  box-shadow:0 12px 24px -10px rgba(34,164,99,.6), inset 0 1px 0 rgba(255,255,255,.22);
+  text-shadow:0 1px 1px rgba(0,0,0,.22);
 }
-.btn--hero:hover{background:#27ad6f}
-.btn--hero:active{transform:translateY(2px);box-shadow:0 6px 14px -8px rgba(46,194,126,.6)}
+.btn--hero:hover{background:linear-gradient(180deg,#1f9a5c 0%,#127a46 100%)}
+.btn--hero:active{transform:translateY(2px);box-shadow:0 6px 14px -8px rgba(34,164,99,.55)}
 
 /* ============ HEADER ============ */
 .site-header{
@@ -106,25 +107,25 @@ ul{list-style:none}
 .gbadge-rating strong{color:var(--ink);font-weight:700}
 
 /* ============ HERO ============ */
-.hero{background:var(--dark);color:#fff;text-align:center;padding:32px 0 54px}
+.hero{background:var(--dark);color:#fff;text-align:center;padding:14px 0 26px}
 .eyebrow-pill{
   display:inline-flex;align-items:center;gap:7px;white-space:nowrap;max-width:100%;
   border:1px solid rgba(95,184,144,.55);
   background:rgba(95,184,144,.20);
   color:#fff;
   padding:10px clamp(13px,3.8vw,20px);border-radius:10px;
-  font-size:clamp(14.5px,4.4vw,19px);font-weight:700;margin-bottom:24px;
+  font-size:clamp(14.5px,4.4vw,19px);font-weight:700;margin-bottom:14px;
 }
 .eyebrow-pill svg{width:17px;height:17px;color:var(--edge);flex:0 0 auto}
 .hero h1{
-  font-size:33px;line-height:1.2;font-weight:800;color:#fff;
-  letter-spacing:-.015em;margin-bottom:24px;
+  font-size:27px;line-height:1.18;font-weight:800;color:#fff;
+  letter-spacing:-.015em;margin-bottom:14px;
 }
-.hero-img{width:100%;height:auto;border-radius:12px;margin-bottom:26px}
-.hero-lead{font-size:20px;line-height:1.35;color:rgba(255,255,255,.88);margin-bottom:28px}
+.hero-img{width:100%;height:auto;border-radius:12px;margin-bottom:12px}
+.hero-lead{font-size:17px;line-height:1.32;color:rgba(255,255,255,.88);margin-bottom:16px}
 .hero-lead strong{font-weight:700;color:#fff}
-.points{display:inline-flex;flex-direction:column;gap:15px;text-align:left;margin-bottom:32px}
-.point{display:flex;align-items:flex-start;gap:12px;font-size:16px;font-weight:600;color:#fff}
+.points{display:inline-flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:14px}
+.point{display:flex;align-items:flex-start;gap:11px;font-size:15px;font-weight:600;color:#fff}
 .tick{
   flex:0 0 25px;width:25px;height:25px;margin-top:1px;border-radius:50%;
   background:var(--green);color:#fff;
@@ -160,10 +161,10 @@ ul{list-style:none}
 .embed{width:100%;height:620px;overflow:hidden}
 .embed iframe{width:100%!important;height:100%!important;border:0;display:block}
 .form-note{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-top:20px;font-size:16px;font-weight:600;color:var(--ink);text-align:center;
+  margin:20px auto 0;max-width:360px;
+  font-size:16px;font-weight:600;line-height:1.4;color:var(--ink);text-align:center;
 }
-.form-note svg{width:19px;height:19px;color:var(--green);flex:0 0 auto}
+.form-note svg{display:inline-block;vertical-align:-3px;width:18px;height:18px;color:var(--green);margin-right:7px}
 
 /* ============ GOOGLE REVIEWS SLIDER ============ */
 .reviews{background:var(--light);padding:50px 0 56px;overflow:hidden;scroll-margin-top:78px}
@@ -447,10 +448,7 @@ ul{list-style:none}
       <!-- End Growform Snippet -->
     </div>
     <div class="container">
-      <p class="form-note">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
-        We cover all of Belfast and the surrounding areas.
-      </p>
+      <p class="form-note"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>We can come to you anywhere in Belfast and the surrounding areas.</p>
     </div>
   </section>
 

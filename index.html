@@ -96,6 +96,8 @@ ul{list-style:none}
 .btn--ghost svg{width:20px;height:20px;flex:0 0 auto}
 .on-dark .btn--ghost{color:#fff;border-color:rgba(255,255,255,.55)}
 .on-dark .btn--ghost:hover{background:rgba(255,255,255,.08)}
+.cta-note{font-size:14px;font-weight:600;color:var(--body);margin:0 0 2px;text-align:center}
+.on-dark .cta-note{color:rgba(255,255,255,.82)}
 
 /* ============ HEADER ============ */
 .site-header{
@@ -301,6 +303,17 @@ ul{list-style:none}
 .contact-line a{color:var(--green);font-weight:700}
 .contact-line a:hover{text-decoration:underline}
 
+/* owner / no-call-centre trust section */
+.owner{background:var(--dark);color:#fff;text-align:center;padding:56px 0}
+.owner-photo{width:100%;aspect-ratio:4/3;border-radius:16px;margin-bottom:24px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.25);color:rgba(255,255,255,.55);font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:18px}
+img.owner-photo{display:block;object-fit:cover}
+.owner .section-eyebrow{color:var(--edge)}
+.owner h2{color:#fff;margin-bottom:14px}
+.owner p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.8);margin-bottom:24px}
+.owner-badges{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:13px 14px;max-width:390px;margin:0 auto 26px;text-align:left}
+.owner-badge{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:#fff}
+.owner-badge svg{width:20px;height:20px;color:var(--edge);flex:0 0 auto}
+
 /* ============ FAQ ============ */
 .faq{background:#fff;padding:22px 0 58px}
 .faq .h2{text-align:center;color:var(--ink);margin-bottom:24px}
@@ -340,6 +353,9 @@ ul{list-style:none}
 .callbar a{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:9px;font-weight:700;font-size:16px;padding:13px 14px;line-height:1}
 .callbar-call{flex:1 1 auto;background:#2ec27e;color:#06241a;box-shadow:0 6px 16px -8px rgba(46,194,126,.7)}
 .callbar-quote{flex:0 0 auto;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.cb-avatar{width:24px;height:24px;border-radius:50%;background:#06241a;color:#2ec27e;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 auto}
+.cb-avatar svg{width:15px;height:15px}
+.cb-avatar img{width:100%;height:100%;object-fit:cover}
 .cb-dot{position:relative;width:9px;height:9px;border-radius:50%;background:#06241a;flex:0 0 auto}
 .cb-dot::after{content:"";position:absolute;inset:0;border-radius:50%;animation:cbpulse 1.8s infinite}
 @keyframes cbpulse{0%{box-shadow:0 0 0 0 rgba(6,36,26,.5)}70%{box-shadow:0 0 0 8px rgba(6,36,26,0)}100%{box-shadow:0 0 0 0 rgba(6,36,26,0)}}
@@ -401,7 +417,7 @@ ul{list-style:none}
 
       <img class="hero-img" src="images/hero_image.webp" alt="KeyFixer mobile auto locksmith holding a programmed replacement car key" width="560" height="312" fetchpriority="high">
 
-      <p class="hero-lead">Mobile auto locksmith for all makes &amp; models. <strong>£0 call-out fee. Full warranty.</strong></p>
+      <p class="hero-lead">Mobile auto locksmith for all makes &amp; models. <strong>£0 call-out fee. 12-month guarantee.</strong></p>
 
       <ul class="points">
         <li class="point">
@@ -423,7 +439,7 @@ ul{list-style:none}
       </ul>
 
       <a class="btn btn--hero" href="tel:+447463787299">Call Us Now: 07463787299</a>
-      <p class="hero-local"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-12H12l1-8Z"/></svg>On call day and night, fast local response.</p>
+      <p class="hero-local"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg>Free quote · Fixed price · No hidden fees</p>
     </div>
   </section>
 
@@ -695,8 +711,9 @@ ul{list-style:none}
       </div>
 
       <div class="cta-pair">
+        <p class="cta-note">Call now for a free, no-obligation quote 👇</p>
         <a class="btn" href="tel:+447463787299">Call Us Now: 07463787299</a>
-        <a class="btn btn--ghost" href="#quote">Get Your Quick Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="#quote">Prefer not to call? Quick form <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </section>
@@ -737,8 +754,9 @@ ul{list-style:none}
       </div>
 
       <div class="cta-pair on-dark">
+        <p class="cta-note">Call now for a free, no-obligation quote 👇</p>
         <a class="btn" href="tel:+447463787299">Call Us Now: 07463787299</a>
-        <a class="btn btn--ghost" href="#quote">Get Your Quick Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="#quote">Prefer not to call? Quick form <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </section>
@@ -762,6 +780,25 @@ ul{list-style:none}
           Call us on: <a href="tel:+447463787299">07463787299</a>
         </span>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================ OWNER / NO CALL CENTRE ============================ -->
+  <section class="owner">
+    <div class="container">
+      <!-- PHOTO: replace this placeholder div with a real shot of you / your van:
+           <img class="owner-photo" src="images/owner.webp" alt="Your Belfast auto locksmith" width="560" height="420" loading="lazy"> -->
+      <div class="owner-photo">A real photo of you or your van goes here<br>— it's the strongest "we're local, not a call centre" signal<br>(owner.webp)</div>
+      <p class="section-eyebrow">Owner-Operated &middot; Belfast</p>
+      <h2 class="h2">No Call Centres. No Subcontractors. Just Your Local Locksmith.</h2>
+      <p>When you call KeyFixer you speak straight to the locksmith who comes to your car &mdash; never an agent, never a middleman. One local, fully-qualified pair of hands, from your first call to back behind the wheel.</p>
+      <ul class="owner-badges">
+        <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> Fully Insured</li>
+        <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> 12-Month Guarantee</li>
+        <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> Fully Qualified</li>
+        <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> £0 Call-Out Fee</li>
+      </ul>
+      <a class="btn" href="tel:+447463787299">Call Us Now: 07463787299</a>
     </div>
   </section>
 
@@ -838,8 +875,8 @@ ul{list-style:none}
 
 <!-- sticky mobile call bar -->
 <div class="callbar" id="callbar">
-  <a class="callbar-call" href="tel:+447463787299"><span class="cb-dot" aria-hidden="true"></span> Call Us Now</a>
-  <a class="callbar-quote" href="#quote">Free Quote</a>
+  <a class="callbar-call" href="tel:+447463787299"><span class="cb-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6Z"/></svg></span> Call Us Now</a>
+  <a class="callbar-quote" href="#quote">Quick form</a>
 </div>
 
 <!-- ============================ REVIEWS MODAL ============================ -->

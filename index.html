@@ -98,6 +98,8 @@ ul{list-style:none}
 .on-dark .btn--ghost:hover{background:rgba(255,255,255,.08)}
 .cta-note{font-size:14px;font-weight:600;color:var(--body);margin:0 0 2px;text-align:center}
 .on-dark .cta-note{color:rgba(255,255,255,.82)}
+.only-desktop{display:none}
+@media (min-width:760px){.only-mobile{display:none}.only-desktop{display:inline}}
 
 /* ============ HEADER ============ */
 .site-header{
@@ -436,7 +438,7 @@ img.owner-photo{display:block;object-fit:cover}
         </li>
       </ul>
 
-      <a class="btn btn--hero" href="tel:+447463787299">Tap to Call: 07463787299</a>
+      <a class="btn btn--hero" href="tel:+447463787299"><span class="only-mobile">Tap to Call: 07463787299</span><span class="only-desktop">Call Us Now: 07463787299</span></a>
       <p class="hero-local"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg>Free quote · Fixed price · No hidden fees</p>
     </div>
   </section>
@@ -709,8 +711,8 @@ img.owner-photo{display:block;object-fit:cover}
       </div>
 
       <div class="cta-pair">
-        <p class="cta-note">Tap to call for a free, no-obligation quote 👇</p>
-        <a class="btn" href="tel:+447463787299">Tap to Call: 07463787299</a>
+        <p class="cta-note"><span class="only-mobile">Tap to call for a free, no-obligation quote 👇</span><span class="only-desktop">Call us for a free, no-obligation quote</span></p>
+        <a class="btn" href="tel:+447463787299"><span class="only-mobile">Tap to Call: 07463787299</span><span class="only-desktop">Call Us Now: 07463787299</span></a>
         <a class="btn btn--ghost" href="#quote">Prefer not to call? Quick form <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -738,7 +740,7 @@ img.owner-photo{display:block;object-fit:cover}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z"/><path d="m9 10 2 2 4-4"/></svg>
           </span>
           <h3>We Confirm &amp; Come To You</h3>
-          <p>We'll give you a clear fixed price upfront and our fully-qualified mobile auto locksmith heads to you. No hidden fees. Just a fast, helpful response.</p>
+          <p>I'll give you a clear fixed price upfront, then head straight to you &mdash; no call centres, no hidden fees. Just one fast, local response.</p>
         </article>
 
         <article class="step">
@@ -752,8 +754,8 @@ img.owner-photo{display:block;object-fit:cover}
       </div>
 
       <div class="cta-pair on-dark">
-        <p class="cta-note">Tap to call for a free, no-obligation quote 👇</p>
-        <a class="btn" href="tel:+447463787299">Tap to Call: 07463787299</a>
+        <p class="cta-note"><span class="only-mobile">Tap to call for a free, no-obligation quote 👇</span><span class="only-desktop">Call us for a free, no-obligation quote</span></p>
+        <a class="btn" href="tel:+447463787299"><span class="only-mobile">Tap to Call: 07463787299</span><span class="only-desktop">Call Us Now: 07463787299</span></a>
         <a class="btn btn--ghost" href="#quote">Prefer not to call? Quick form <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -788,15 +790,15 @@ img.owner-photo{display:block;object-fit:cover}
            <img class="owner-photo" src="images/owner.webp" alt="Your Belfast auto locksmith" width="560" height="420" loading="lazy"> -->
       <div class="owner-photo">A real photo of you or your van goes here<br>— it's the strongest "we're local, not a call centre" signal<br>(owner.webp)</div>
       <p class="section-eyebrow">Owner-Operated &middot; Belfast</p>
-      <h2 class="h2">No Call Centres. No Subcontractors. Just Your Local Locksmith.</h2>
-      <p>When you call KeyFixer you speak straight to the locksmith who comes to your car &mdash; never an agent, never a middleman. One local, fully-qualified pair of hands, from your first call to back behind the wheel.</p>
+      <h2 class="h2">No Call Centres. No Subcontractors. Just One Local Locksmith.</h2>
+      <p>When you call, you get me &mdash; one local Belfast locksmith, not a call centre and not a subcontractor. The person who answers the phone is the person who comes to your car, cuts your key and gets you back on the road. Same hands, start to finish.</p>
       <ul class="owner-badges">
         <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> Fully Insured</li>
         <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> 12-Month Guarantee</li>
         <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> Fully Qualified</li>
         <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> £0 Call-Out Fee</li>
       </ul>
-      <a class="btn" href="tel:+447463787299">Tap to Call: 07463787299</a>
+      <a class="btn" href="tel:+447463787299"><span class="only-mobile">Tap to Call: 07463787299</span><span class="only-desktop">Call Us Now: 07463787299</span></a>
     </div>
   </section>
 
@@ -850,7 +852,7 @@ img.owner-photo{display:block;object-fit:cover}
     <div class="container">
       <h2>Since you made it this far&hellip;</h2>
       <p class="sub">Honestly, it's quicker to call than read any more of this page&hellip;</p>
-      <a class="btn" href="tel:+447463787299">Tap to Call: 07463787299</a>
+      <a class="btn" href="tel:+447463787299"><span class="only-mobile">Tap to Call: 07463787299</span><span class="only-desktop">Call Us Now: 07463787299</span></a>
       <p class="fineprint">Or <a href="#quote">fill in the quick form</a> and we'll come back with a price.</p>
     </div>
   </section>

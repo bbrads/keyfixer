@@ -79,14 +79,15 @@ ul{list-style:none}
   padding:9px 15px;font-size:14px;gap:7px;
 }
 .btn--mini img{width:20px;height:20px}
-/* High-contrast primary CTA for the dark hero — white so it pops off the green bg */
+/* Primary hero CTA — vivid green so it pops off the dark bg without looking cheap */
 .btn--hero{
-  background:#fff;color:var(--dark);
-  border-color:#fff;
+  background:#2ec27e;color:#06241a;
+  border:1px solid #74e2ad;
   font-size:21px;font-weight:800;padding:16px 18px;white-space:nowrap;
-  box-shadow:-2px 3px 0 0 var(--edge), 0 0 0 4px rgba(95,184,144,.22);
+  box-shadow:0 12px 26px -10px rgba(46,194,126,.65), inset 0 1px 0 rgba(255,255,255,.35);
 }
-.btn--hero:hover{background:#eef4f0}
+.btn--hero:hover{background:#27ad6f}
+.btn--hero:active{transform:translateY(2px);box-shadow:0 6px 14px -8px rgba(46,194,126,.6)}
 
 /* ============ HEADER ============ */
 .site-header{
@@ -97,19 +98,24 @@ ul{list-style:none}
 .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px}
 .brand{display:flex;flex:0 0 auto}
 .brand-logo{height:46px;width:auto}
-.gbadge{height:38px;width:auto;flex:0 1 auto}
+.gbadge{display:flex;flex-direction:column;align-items:center;gap:3px;flex:0 1 auto;line-height:1.12;text-align:center;color:var(--ink)}
+.gbadge-title{display:flex;align-items:center;gap:5px;font-weight:700;font-size:clamp(11px,3.3vw,14px);color:var(--ink);white-space:nowrap}
+.gbadge-g{width:clamp(13px,3.6vw,16px);height:clamp(13px,3.6vw,16px);flex:0 0 auto}
+.gbadge-rating{display:flex;align-items:center;gap:4px;font-size:clamp(9px,2.7vw,12px);color:var(--body);white-space:nowrap}
+.gbadge-rating svg{width:clamp(10px,3vw,13px);height:clamp(10px,3vw,13px);color:var(--gold);flex:0 0 auto}
+.gbadge-rating strong{color:var(--ink);font-weight:700}
 
 /* ============ HERO ============ */
 .hero{background:var(--dark);color:#fff;text-align:center;padding:32px 0 54px}
 .eyebrow-pill{
-  display:inline-flex;align-items:center;gap:9px;
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;max-width:100%;
   border:1px solid rgba(95,184,144,.55);
   background:rgba(95,184,144,.20);
   color:#fff;
-  padding:11px 20px;border-radius:10px;
-  font-size:19px;font-weight:700;margin-bottom:24px;
+  padding:10px clamp(13px,3.8vw,20px);border-radius:10px;
+  font-size:clamp(14.5px,4.4vw,19px);font-weight:700;margin-bottom:24px;
 }
-.eyebrow-pill svg{width:18px;height:18px;color:var(--edge);flex:0 0 auto}
+.eyebrow-pill svg{width:17px;height:17px;color:var(--edge);flex:0 0 auto}
 .hero h1{
   font-size:33px;line-height:1.2;font-weight:800;color:#fff;
   letter-spacing:-.015em;margin-bottom:24px;
@@ -160,7 +166,7 @@ ul{list-style:none}
 .form-note svg{width:19px;height:19px;color:var(--green);flex:0 0 auto}
 
 /* ============ GOOGLE REVIEWS SLIDER ============ */
-.reviews{background:var(--light);padding:50px 0 56px;overflow:hidden}
+.reviews{background:var(--light);padding:50px 0 56px;overflow:hidden;scroll-margin-top:78px}
 .reviews-head{text-align:center;margin-bottom:24px}
 .g-rating{display:inline-flex;align-items:center;gap:9px;font-size:21px;font-weight:800;color:var(--ink)}
 .g-rating svg{width:25px;height:25px;flex:0 0 auto}
@@ -220,20 +226,22 @@ ul{list-style:none}
 
 /* reviews modal */
 .reviews-modal{
-  width:min(560px,92vw);max-height:85vh;padding:0;border:none;border-radius:16px;
-  box-shadow:0 30px 80px -20px rgba(0,0,0,.5);color:var(--body);
+  width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;
+  margin:0;padding:0;border:none;border-radius:0;background:#fff;color:var(--body);
 }
-.reviews-modal::backdrop{background:rgba(8,20,16,.55)}
-.reviews-modal[open]{position:fixed;inset:0;margin:auto;z-index:100} /* also safe-positions the rare non-modal fallback */
-.modal-head{position:relative;padding:24px 22px 18px;border-bottom:1px solid var(--line);text-align:center}
+.reviews-modal::backdrop{background:rgba(8,20,16,.6)}
+.reviews-modal[open]{position:fixed;inset:0;display:flex;flex-direction:column}
+.modal-head{position:relative;flex:0 0 auto;padding:18px 20px 14px;border-bottom:1px solid var(--line);text-align:center}
+.modal-head .g-rating{font-size:19px}
 .modal-close{
-  position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
+  position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:50%;
   border:none;background:#f2f6f3;color:var(--ink);cursor:pointer;
   display:flex;align-items:center;justify-content:center;
 }
 .modal-close:hover{background:#e4e7e2}
-.modal-close svg{width:18px;height:18px}
-.modal-body{padding:4px 22px 22px;overflow-y:auto;max-height:calc(85vh - 104px)}
+.modal-close svg{width:22px;height:22px}
+.modal-body{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:2px 0 28px}
+.modal-body-inner{width:100%;max-width:600px;margin:0 auto;padding:0 22px}
 .modal-review{padding:20px 0;border-bottom:1px solid var(--line)}
 .modal-review:last-child{border-bottom:none}
 .modal-review .review-top{margin-bottom:10px}
@@ -328,7 +336,7 @@ ul{list-style:none}
 }
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"KeyFixer Auto Locksmiths","description":"Mobile auto locksmith for car key replacement, lost car keys and vehicle lockouts across Belfast and the surrounding areas in Northern Ireland.","telephone":"+447463787299","areaServed":"Belfast","openingHours":"Mo-Su 00:00-24:00","priceRange":"££"}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"KeyFixer Auto Locksmiths","description":"Mobile auto locksmith for car key replacement, lost car keys and vehicle lockouts across Belfast and the surrounding areas in Northern Ireland.","telephone":"+447463787299","areaServed":"Belfast","openingHours":"Mo-Su 00:00-24:00","priceRange":"££","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"30"}}
 </script>
 </head>
 <body>
@@ -339,7 +347,16 @@ ul{list-style:none}
     <a class="brand" href="#top" aria-label="KeyFixer Auto Locksmiths — home">
       <img class="brand-logo" src="images/keyfixer_logo.svg" alt="KeyFixer Auto Locksmiths" width="77" height="50">
     </a>
-    <img class="gbadge" src="images/google-reviews.svg" alt="Rated 5 stars — 80+ Google reviews" width="75" height="36">
+    <a class="gbadge" href="#reviews" aria-label="Rated 5.0 out of 5 from 30 Google reviews">
+      <span class="gbadge-title">
+        <svg class="gbadge-g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg>
+        Excellent on Google
+      </span>
+      <span class="gbadge-rating">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
+        <span><strong>5.0</strong> out of 5 &middot; 30 reviews</span>
+      </span>
+    </a>
     <a class="btn btn--mini" href="tel:+447463787299">
       <img src="images/phoneicon.svg" alt="" aria-hidden="true" width="19" height="19">
       Call Now
@@ -438,7 +455,7 @@ ul{list-style:none}
   </section>
 
   <!-- ============================ GOOGLE REVIEWS SLIDER ============================ -->
-  <section class="reviews" aria-label="Google reviews">
+  <section class="reviews" id="reviews" aria-label="Google reviews">
     <div class="container">
       <div class="reviews-head">
         <span class="g-rating">
@@ -458,7 +475,7 @@ ul{list-style:none}
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
           </span>
-          <span><strong>5.0</strong> out of 5 based on 80+ reviews</span>
+          <span><strong>5.0</strong> out of 5 based on 30 reviews</span>
         </div>
       </div>
 
@@ -474,13 +491,13 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#1a73e8">O<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Oliver Northfield <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">2 weeks ago</span>
+                <span class="review-date">1 day ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Piotr helped me with an emergency call out on a Sunday in Belfast, turned up early and had the issue sorted quickly and efficiently. Would highly recommend.</p>
+            <p class="review-text">Pawel helped me with an emergency call out on a Sunday in Belfast, turned up early and had the issue sorted quickly and efficiently. Would highly recommend.</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
 
@@ -489,7 +506,7 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#d93025">D<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">David Brown <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">3 weeks ago</span>
+                <span class="review-date">2 days ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
@@ -504,7 +521,7 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#e8710a">E<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Ellen Mc Lean <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">1 month ago</span>
+                <span class="review-date">3 days ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
@@ -519,13 +536,13 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#188038">C<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Conor Kelly Gorman <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">1 month ago</span>
+                <span class="review-date">5 days ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Amazing service. Piotr said he'd be here in 45 minutes and arrived in 25. Got us into the car in a few minutes. Thank you (Mercedes GLA)</p>
+            <p class="review-text">Amazing service. Pawel said he'd be here in 45 minutes and arrived in 25. Got us into the car in a few minutes. Thank you (Mercedes GLA)</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
 
@@ -534,28 +551,28 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#9334e6">D<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Dean Pritchard <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">2 months ago</span>
+                <span class="review-date">1 week ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Phoned Piotr on Saturday and he told me he would meet me on Monday, arrived on time, had everything sorted within 15 minutes, very professional and would recommend him to anyone.</p>
+            <p class="review-text">Phoned Pawel on Saturday and he told me he would meet me on Monday, arrived on time, had everything sorted within 15 minutes, very professional and would recommend him to anyone.</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
 
           <article class="review-card">
             <div class="review-top">
-              <span class="review-avatar" style="background:#12808d">C<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
+              <span class="review-avatar" style="background:#0b8043">D<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
-                <span class="review-name">Ciara Corrigan <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">2 months ago</span>
+                <span class="review-name">Darren Nesbitt <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                <span class="review-date">2 weeks ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Brilliant service, was going to call same day May bank holiday. I said I was happy to wait as he was in a completely different direction. Rang the next morning and suggested I try something else, which worked. No fees, sure where would you get it. Thank you.</p>
+            <p class="review-text">Great service. I phoned last night and this morning I could use the car. Thank you so much for the great service and at a reasonable price. Would highly recommend.</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
 
@@ -564,13 +581,13 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#c5221f">M<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Miłosz Stopka <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">3 months ago</span>
+                <span class="review-date">3 weeks ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Peter is a very nice guy with huge knowledge in what he's doing. He made a few keys for my vans and lorry and programmed a spare to fully control my keyless car. One of the best locksmiths with high tech equipment in Northern Ireland. Truly recommend his service and I'm using him every time my customers need this type of service. Well done Peter.</p>
+            <p class="review-text">Pawel is a very nice guy with huge knowledge in what he's doing. He made a few keys for my vans and lorry and programmed a spare to fully control my keyless car. One of the best locksmiths with high tech equipment in Northern Ireland. Truly recommend his service and I'm using him every time my customers need this type of service. Well done Pawel.</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
 
@@ -579,7 +596,7 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#1967d2">S<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Sarah Anderson <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">3 months ago</span>
+                <span class="review-date">1 month ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
@@ -594,7 +611,7 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#b06000">N<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Nito4436 <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">4 months ago</span>
+                <span class="review-date">2 months ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
@@ -609,13 +626,13 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#7b1fa2">S<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Stephen Melville <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">5 months ago</span>
+                <span class="review-date">3 months ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Piotr did a first class job making a new remote/key for our 22 year old Mk1 Audi TT.</p>
+            <p class="review-text">Pawel did a first class job making a new remote/key for our 22 year old Mk1 Audi TT.</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
 
@@ -624,7 +641,7 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#00897b">S<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Sarah Stewart <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">6 months ago</span>
+                <span class="review-date">4 months ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
@@ -639,7 +656,7 @@ ul{list-style:none}
               <span class="review-avatar" style="background:#5f6368">D<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">David G <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-                <span class="review-date">7 months ago</span>
+                <span class="review-date">6 months ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
@@ -813,10 +830,10 @@ ul{list-style:none}
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
       </span>
-      <span><strong>5.0</strong> out of 5 based on 80+ reviews</span>
+      <span><strong>5.0</strong> out of 5 based on 30 reviews</span>
     </div>
   </div>
-  <div class="modal-body"></div>
+  <div class="modal-body"><div class="modal-body-inner"></div></div>
 </dialog>
 
 <script>
@@ -839,7 +856,7 @@ ul{list-style:none}
 
   /* build modal from the cards (single source of truth) and wire open/close */
   if (dlg && track) {
-    var body = dlg.querySelector('.modal-body');
+    var body = dlg.querySelector('.modal-body-inner');
 
     /* a11y: hide decorative avatar initials; give each Read more a unique name */
     track.querySelectorAll('.review-avatar').forEach(function(a){ a.setAttribute('aria-hidden', 'true'); });

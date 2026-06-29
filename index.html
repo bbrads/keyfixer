@@ -89,6 +89,13 @@ ul{list-style:none}
 }
 .btn--hero:hover{background:linear-gradient(180deg,#1f9a5c 0%,#127a46 100%)}
 .btn--hero:active{transform:translateY(2px);box-shadow:0 6px 14px -8px rgba(34,164,99,.55)}
+/* dual CTA: primary call button + secondary ghost "quote" button */
+.cta-pair{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.btn--ghost{background:transparent;color:var(--green);border:1.5px solid var(--green);box-shadow:none}
+.btn--ghost:hover{background:rgba(31,138,91,.07)}
+.btn--ghost svg{width:20px;height:20px;flex:0 0 auto}
+.on-dark .btn--ghost{color:#fff;border-color:rgba(255,255,255,.55)}
+.on-dark .btn--ghost:hover{background:rgba(255,255,255,.08)}
 
 /* ============ HEADER ============ */
 .site-header{
@@ -132,6 +139,9 @@ ul{list-style:none}
   display:flex;align-items:center;justify-content:center;
 }
 .tick svg{width:13px;height:13px}
+.hero-local{margin-top:14px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.72);max-width:430px;margin-left:auto;margin-right:auto}
+.hero-local svg{display:inline-block;vertical-align:-2px;width:15px;height:15px;color:var(--edge);margin-right:5px}
+.hero-local strong{color:#fff;font-weight:700}
 
 /* ============ BRAND LOGO MARQUEE ============ */
 .brands{background:var(--light);overflow:hidden;position:relative;padding:18px 0}
@@ -379,7 +389,7 @@ ul{list-style:none}
 
       <img class="hero-img" src="images/hero_image.webp" alt="KeyFixer mobile auto locksmith holding a programmed replacement car key" width="560" height="312" fetchpriority="high">
 
-      <p class="hero-lead">Mobile auto locksmith for all car makes and models. <strong>£0 call-out fee. 3-month workmanship warranty.</strong></p>
+      <p class="hero-lead">Belfast's mobile auto locksmith for all makes &amp; models. <strong>£0 call-out fee. 3-month workmanship warranty.</strong></p>
 
       <ul class="points">
         <li class="point">
@@ -401,6 +411,7 @@ ul{list-style:none}
       </ul>
 
       <a class="btn btn--hero" href="tel:+447463787299">Call Me Now: 07463787299</a>
+      <p class="hero-local"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><strong>Based in Belfast</strong> — covering BT1–BT17, Lisburn, Bangor, Newtownabbey &amp; all surrounding areas. A local team, never a national call centre.</p>
     </div>
   </section>
 
@@ -670,6 +681,11 @@ ul{list-style:none}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
         </button>
       </div>
+
+      <div class="cta-pair">
+        <a class="btn" href="tel:+447463787299">Call Me Now: 07463787299</a>
+        <a class="btn btn--ghost" href="#quote">Get Your Quick Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </section>
 
@@ -708,7 +724,10 @@ ul{list-style:none}
         </article>
       </div>
 
-      <a class="btn" href="tel:+447463787299">Call Me Now: 07463787299</a>
+      <div class="cta-pair on-dark">
+        <a class="btn" href="tel:+447463787299">Call Me Now: 07463787299</a>
+        <a class="btn btn--ghost" href="#quote">Get Your Quick Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </section>
 

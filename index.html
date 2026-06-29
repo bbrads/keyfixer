@@ -334,6 +334,18 @@ ul{list-style:none}
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:13px;color:rgba(255,255,255,.4);margin-top:16px}
 
+/* sticky mobile call bar — persistent CTA that follows the user */
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:8px;padding:9px 10px;padding-bottom:calc(9px + env(safe-area-inset-bottom));background:rgba(8,42,32,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid rgba(95,184,144,.3);box-shadow:0 -8px 22px -10px rgba(0,0,0,.55);transition:transform .25s ease}
+.callbar.is-hidden{transform:translateY(120%)}
+.callbar a{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:9px;font-weight:700;font-size:16px;padding:13px 14px;line-height:1}
+.callbar-call{flex:1 1 auto;background:#2ec27e;color:#06241a;box-shadow:0 6px 16px -8px rgba(46,194,126,.7)}
+.callbar-quote{flex:0 0 auto;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.cb-dot{position:relative;width:9px;height:9px;border-radius:50%;background:#06241a;flex:0 0 auto}
+.cb-dot::after{content:"";position:absolute;inset:0;border-radius:50%;animation:cbpulse 1.8s infinite}
+@keyframes cbpulse{0%{box-shadow:0 0 0 0 rgba(6,36,26,.5)}70%{box-shadow:0 0 0 8px rgba(6,36,26,0)}100%{box-shadow:0 0 0 0 rgba(6,36,26,0)}}
+@media (max-width:759px){body{padding-bottom:66px}}
+@media (min-width:760px){.callbar{display:none}}
+
 /* ============ LARGER SCREENS ============ */
 @media (min-width:640px){
   .hero h1{font-size:42px}
@@ -385,11 +397,11 @@ ul{list-style:none}
         Covering: Belfast &amp; Surrounding
       </span>
 
-      <h1>Locked Out or Lost Your Car Keys?</h1>
+      <h1>Locked Out, Lost Keys or Need a New Key?</h1>
 
       <img class="hero-img" src="images/hero_image.webp" alt="KeyFixer mobile auto locksmith holding a programmed replacement car key" width="560" height="312" fetchpriority="high">
 
-      <p class="hero-lead">Mobile auto locksmith for all makes &amp; models. <strong>£0 call-out fee.</strong></p>
+      <p class="hero-lead">Mobile auto locksmith for all makes &amp; models. <strong>£0 call-out fee. Full warranty.</strong></p>
 
       <ul class="points">
         <li class="point">
@@ -406,12 +418,12 @@ ul{list-style:none}
         </li>
         <li class="point">
           <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg></span>
-          Fully Insured &amp; Up to 50% Cheaper
+          Up to 50% Cheaper Than Dealership
         </li>
       </ul>
 
-      <a class="btn btn--hero" href="tel:+447463787299">Call Me Now: 07463787299</a>
-      <p class="hero-local"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-12H12l1-8Z"/></svg>On call day or night — fast local response.</p>
+      <a class="btn btn--hero" href="tel:+447463787299">Call Us Now: 07463787299</a>
+      <p class="hero-local"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-12H12l1-8Z"/></svg>On call day and night, fast local response.</p>
     </div>
   </section>
 
@@ -683,7 +695,7 @@ ul{list-style:none}
       </div>
 
       <div class="cta-pair">
-        <a class="btn" href="tel:+447463787299">Call Me Now: 07463787299</a>
+        <a class="btn" href="tel:+447463787299">Call Us Now: 07463787299</a>
         <a class="btn btn--ghost" href="#quote">Get Your Quick Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -725,7 +737,7 @@ ul{list-style:none}
       </div>
 
       <div class="cta-pair on-dark">
-        <a class="btn" href="tel:+447463787299">Call Me Now: 07463787299</a>
+        <a class="btn" href="tel:+447463787299">Call Us Now: 07463787299</a>
         <a class="btn btn--ghost" href="#quote">Get Your Quick Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -803,7 +815,7 @@ ul{list-style:none}
     <div class="container">
       <h2>Since you made it this far&hellip;</h2>
       <p class="sub">Honestly, it's quicker to call than read any more of this page&hellip;</p>
-      <a class="btn" href="tel:+447463787299">Call Me Now: 07463787299</a>
+      <a class="btn" href="tel:+447463787299">Call Us Now: 07463787299</a>
       <p class="fineprint">Or <a href="#quote">fill in the quick form</a> and we'll come back with a price.</p>
     </div>
   </section>
@@ -823,6 +835,12 @@ ul{list-style:none}
     <p class="footer-copy">&copy; 2026 KeyFixer Auto Locksmiths. All rights reserved.</p>
   </div>
 </footer>
+
+<!-- sticky mobile call bar -->
+<div class="callbar" id="callbar">
+  <a class="callbar-call" href="tel:+447463787299"><span class="cb-dot" aria-hidden="true"></span> Call Us Now</a>
+  <a class="callbar-quote" href="#quote">Free Quote</a>
+</div>
 
 <!-- ============================ REVIEWS MODAL ============================ -->
 <dialog class="reviews-modal" id="reviewsModal" aria-label="Google reviews">
@@ -907,6 +925,15 @@ ul{list-style:none}
     });
     dlg.querySelector('.modal-close').addEventListener('click', close);
     dlg.addEventListener('click', function(e){ if (e.target === dlg) close(); });
+  }
+
+  /* sticky call bar: hide while the quote form is on screen so it never covers a field */
+  var callbar = document.getElementById('callbar');
+  var quoteSec = document.getElementById('quote');
+  if (callbar && quoteSec && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ callbar.classList.toggle('is-hidden', e.isIntersecting); });
+    }, { threshold: 0.2 }).observe(quoteSec);
   }
 })();
 </script>

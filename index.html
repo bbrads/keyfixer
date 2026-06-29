@@ -129,7 +129,7 @@ ul{list-style:none}
 }
 .eyebrow-pill svg{width:17px;height:17px;color:var(--edge);flex:0 0 auto}
 .hero h1{
-  font-size:27px;line-height:1.18;font-weight:800;color:#fff;
+  font-size:23px;line-height:1.2;font-weight:800;color:#fff;
   letter-spacing:-.015em;margin-bottom:14px;
 }
 .hero-img{width:100%;height:auto;border-radius:12px;margin-bottom:12px}
@@ -312,9 +312,24 @@ img.owner-photo{display:block;object-fit:cover}
 .owner .section-eyebrow{color:var(--edge)}
 .owner h2{color:#fff;margin-bottom:14px}
 .owner p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.8);margin-bottom:24px}
-.owner-badges{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:13px 14px;max-width:390px;margin:0 auto 26px;text-align:left}
-.owner-badge{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:#fff}
-.owner-badge svg{width:20px;height:20px;color:var(--edge);flex:0 0 auto}
+.owner-badges{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:13px 10px;max-width:390px;margin:0 auto 26px;text-align:left}
+.owner-badge{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#fff;white-space:nowrap}
+.owner-badge svg{width:18px;height:18px;color:var(--edge);flex:0 0 auto}
+
+/* shared image placeholder (swap for real photos) */
+.img-ph{display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,#eef0ec,#e2e5e0);border:1.5px dashed #b6bdb4;color:#7c857c;font-family:var(--mono);font-size:11.5px;line-height:1.6;padding:14px}
+.areas-img.img-ph{aspect-ratio:7/6}
+
+/* recent jobs gallery */
+.gallery{background:#fff;text-align:center;padding:54px 0}
+.gallery .h2{color:var(--ink);margin-bottom:12px}
+.gallery .gallery-sub{font-size:16px;color:var(--body);margin-bottom:24px}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery-item{margin:0}
+.gallery-photo{aspect-ratio:1/1;border-radius:12px;overflow:hidden;width:100%}
+img.gallery-photo{display:block;height:100%;object-fit:cover}
+.gallery-item figcaption{font-size:12.5px;font-weight:600;color:var(--body);margin-top:8px;line-height:1.35}
+@media (min-width:560px){.gallery-grid{grid-template-columns:1fr 1fr 1fr}}
 
 /* ============ FAQ ============ */
 .faq{background:#fff;padding:22px 0 58px}
@@ -413,7 +428,7 @@ img.owner-photo{display:block;object-fit:cover}
         Covering: Belfast &amp; Surrounding
       </span>
 
-      <h1>Locked Out, Lost Keys or Need a New Key?</h1>
+      <h1>Locked Out, Lost Keys or Need a New Key in Belfast?</h1>
 
       <img class="hero-img" src="images/hero_image.webp" alt="KeyFixer mobile auto locksmith holding a programmed replacement car key" width="560" height="312" fetchpriority="high">
 
@@ -764,7 +779,9 @@ img.owner-photo{display:block;object-fit:cover}
   <!-- ============================ AREAS WE COVER ============================ -->
   <section class="areas">
     <div class="container">
-      <img class="areas-img" src="images/area_we_cover.webp" alt="KeyFixer auto locksmith working on cars across Belfast" width="556" height="474" loading="lazy">
+      <!-- MAP: swap this placeholder for a screenshot of your Google Maps coverage area:
+           <img class="areas-img" src="images/coverage-map.webp" alt="KeyFixer coverage map across Belfast" width="556" height="474" loading="lazy"> -->
+      <div class="areas-img img-ph">A map of your Belfast coverage area goes here<br>(a screenshot of your Google Maps service radius works great — coverage-map.webp)</div>
 
       <p class="section-eyebrow">Areas We Cover</p>
       <h2 class="h2">Fast Mobile Auto Locksmith Service Across Belfast &amp; the Surrounding Areas.</h2>
@@ -790,8 +807,8 @@ img.owner-photo{display:block;object-fit:cover}
            <img class="owner-photo" src="images/owner.webp" alt="Your Belfast auto locksmith" width="560" height="420" loading="lazy"> -->
       <div class="owner-photo">A real photo of you or your van goes here<br>— it's the strongest "we're local, not a call centre" signal<br>(owner.webp)</div>
       <p class="section-eyebrow">Owner-Operated &middot; Belfast</p>
-      <h2 class="h2">No Call Centres. No Subcontractors. Just One Local Locksmith.</h2>
-      <p>When you call, you get me &mdash; one local Belfast locksmith, not a call centre and not a subcontractor. The person who answers the phone is the person who comes to your car, cuts your key and gets you back on the road. Same hands, start to finish.</p>
+      <h2 class="h2">You'll Always Get the Same Local Locksmith.</h2>
+      <p>When you call, you get me, your local Belfast locksmith. The person who answers the phone is the person who comes to your car, cuts your key and gets you back on the road. Same hands, the same 5.0-star service you'll see in the reviews above, start to finish.</p>
       <ul class="owner-badges">
         <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> Fully Insured</li>
         <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> 12-Month Guarantee</li>
@@ -799,6 +816,24 @@ img.owner-photo{display:block;object-fit:cover}
         <li class="owner-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg> £0 Call-Out Fee</li>
       </ul>
       <a class="btn" href="tel:+447463787299"><span class="only-mobile">Tap to Call: 07463787299</span><span class="only-desktop">Call Us Now: 07463787299</span></a>
+    </div>
+  </section>
+
+  <!-- ============================ RECENT JOBS GALLERY ============================ -->
+  <section class="gallery">
+    <div class="container">
+      <p class="section-eyebrow">Recent Jobs</p>
+      <h2 class="h2">Real Keys, Real Cars, Across Belfast</h2>
+      <p class="gallery-sub">A few recent jobs &mdash; keys cut, fobs programmed and cars opened on the spot.</p>
+      <div class="gallery-grid">
+        <!-- Swap each placeholder for a real photo: <img class="gallery-photo" src="images/job-1.webp" alt="Spare key cut for a VW Golf in Lisburn" width="300" height="300" loading="lazy"> -->
+        <figure class="gallery-item"><div class="gallery-photo img-ph">job-1.webp</div><figcaption>VW Golf &middot; spare key &middot; Lisburn</figcaption></figure>
+        <figure class="gallery-item"><div class="gallery-photo img-ph">job-2.webp</div><figcaption>BMW 1 Series &middot; all keys lost &middot; Belfast</figcaption></figure>
+        <figure class="gallery-item"><div class="gallery-photo img-ph">job-3.webp</div><figcaption>Audi A3 &middot; key programmed &middot; Bangor</figcaption></figure>
+        <figure class="gallery-item"><div class="gallery-photo img-ph">job-4.webp</div><figcaption>Ford Fiesta &middot; locked out &middot; Newtownabbey</figcaption></figure>
+        <figure class="gallery-item"><div class="gallery-photo img-ph">job-5.webp</div><figcaption>Vauxhall Corsa &middot; spare key &middot; Castlereagh</figcaption></figure>
+        <figure class="gallery-item"><div class="gallery-photo img-ph">job-6.webp</div><figcaption>Mercedes A-Class &middot; key fob &middot; Holywood</figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -874,7 +909,7 @@ img.owner-photo{display:block;object-fit:cover}
 </footer>
 
 <!-- sticky mobile call bar -->
-<div class="callbar" id="callbar">
+<div class="callbar is-hidden" id="callbar">
   <a class="callbar-call" href="tel:+447463787299"><span class="cb-phone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.95 17.18c-1.3 0-2.56-.2-3.74-.6a1.05 1.05 0 0 0-1.07.26l-2.06 2.06a15.8 15.8 0 0 1-6.93-6.93l2.06-2.07c.28-.27.36-.66.25-1.01a11.9 11.9 0 0 1-.6-3.75c0-.58-.47-1.05-1.05-1.05H3.5c-.58 0-1.05.47-1.05 1.05 0 9.06 7.34 16.4 16.4 16.4.58 0 1.05-.47 1.05-1.05v-3.52c0-.58-.47-1.05-1.05-1.05Z"/></svg></span> Tap to Call</a>
   <a class="callbar-quote" href="#quote">Quick form</a>
 </div>

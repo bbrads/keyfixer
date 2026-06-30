@@ -307,8 +307,7 @@ ul{list-style:none}
 
 /* owner / no-call-centre trust section */
 .owner{background:var(--dark);color:#fff;text-align:center;padding:56px 0}
-.owner-photo{width:100%;aspect-ratio:4/3;border-radius:16px;margin-bottom:24px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);border:1.5px dashed rgba(255,255,255,.25);color:rgba(255,255,255,.55);font-family:var(--mono);font-size:12.5px;line-height:1.6;padding:18px}
-img.owner-photo{display:block;object-fit:cover}
+.owner-photo{width:100%;height:auto;display:block;border-radius:16px;margin-bottom:24px}
 .owner .section-eyebrow{color:var(--edge)}
 .owner h2{color:#fff;margin-bottom:14px}
 .owner p{font-size:16px;line-height:1.55;color:rgba(255,255,255,.8);margin-bottom:24px}
@@ -324,10 +323,9 @@ img.owner-photo{display:block;object-fit:cover}
 .gallery{background:#fff;text-align:center;padding:54px 0}
 .gallery .h2{color:var(--ink);margin-bottom:12px}
 .gallery .gallery-sub{font-size:16px;color:var(--body);margin-bottom:24px}
-.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
 .gallery-item{margin:0}
-.gallery-photo{aspect-ratio:1/1;border-radius:12px;overflow:hidden;width:100%}
-img.gallery-photo{display:block;height:100%;object-fit:cover}
+.gallery-photo{aspect-ratio:1/1;width:100%;height:auto;display:block;object-fit:cover;border-radius:12px}
 .gallery-item figcaption{font-size:12.5px;font-weight:600;color:var(--body);margin-top:8px;line-height:1.35}
 @media (min-width:560px){.gallery-grid{grid-template-columns:1fr 1fr 1fr}}
 
@@ -801,9 +799,7 @@ img.gallery-photo{display:block;height:100%;object-fit:cover}
   <!-- ============================ OWNER / NO CALL CENTRE ============================ -->
   <section class="owner">
     <div class="container">
-      <!-- PHOTO: replace this placeholder div with a real shot of you / your van:
-           <img class="owner-photo" src="images/owner.webp" alt="Your Belfast auto locksmith" width="560" height="420" loading="lazy"> -->
-      <div class="owner-photo">A real photo of you or your van goes here<br>— it's the strongest "we're local, not a call centre" signal<br>(owner.webp)</div>
+      <img class="owner-photo" src="images/owner.webp" alt="Your local Belfast auto locksmith programming a key inside a customer's car" width="1100" height="614" loading="lazy">
       <p class="section-eyebrow">Owner-Operated &middot; Belfast</p>
       <h2 class="h2">You'll Always Get the Same Local Locksmith.</h2>
       <p>When you call, you get me, your local Belfast locksmith. The person who answers the phone is the person who comes to your car, cuts your key and gets you back on the road. Same hands, the same 5.0-star service you'll see in the reviews above, start to finish.</p>

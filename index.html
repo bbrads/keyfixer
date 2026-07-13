@@ -61,8 +61,9 @@
 :root{
   --dark:#0c3b2e;
   --dark-2:#082a20;
-  --green:#1f8a5b;
+  --green:#1c8052;   /* one notch darker than the original #1f8a5b so white button text passes WCAG 4.5:1 */
   --green-hover:#19774c;
+  --green-ink:#176f47;   /* green for text and outlines on light backgrounds, 5.6:1 on --light */
   --edge:#5fb890;
   --ink:#13211b;
   --body:#48534d;
@@ -131,7 +132,7 @@ ul{list-style:none}
 .btn--hero:active{transform:translateY(2px);box-shadow:0 6px 14px -8px rgba(34,164,99,.55)}
 /* dual CTA: primary call button + secondary ghost "quote" button */
 .cta-pair{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-.btn--ghost{background:transparent;color:var(--green);border:1.5px solid var(--green);box-shadow:none}
+.btn--ghost{background:transparent;color:var(--green-ink);border:1.5px solid var(--green-ink);box-shadow:none}
 .btn--ghost:hover{background:rgba(31,138,91,.07)}
 .btn--ghost svg{width:20px;height:20px;flex:0 0 auto}
 .on-dark .btn--ghost{color:#fff;border-color:rgba(255,255,255,.55)}
@@ -337,14 +338,14 @@ ul{list-style:none}
 .areas-img{width:100%;height:auto;border-radius:12px;margin-bottom:28px}
 .section-eyebrow{
   font-size:13px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;
-  color:var(--green);margin-bottom:12px;
+  color:var(--green-ink);margin-bottom:12px;
 }
 .areas .h2{color:var(--ink);margin-bottom:16px}
 .areas p{font-size:16px;color:var(--body);margin-bottom:24px}
 .areas-contact{display:flex;flex-direction:column;align-items:center;gap:11px}
 .contact-line{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:600;color:var(--ink)}
 .contact-line svg{width:19px;height:19px;color:var(--green)}
-.contact-line a{color:var(--green);font-weight:700}
+.contact-line a{color:var(--green-ink);font-weight:700}
 .contact-line a:hover{text-decoration:underline}
 
 /* owner / no-call-centre trust section */
@@ -404,7 +405,7 @@ ul{list-style:none}
 .footer-links{display:flex;flex-direction:column;gap:9px;margin-top:20px}
 .footer-links a{font-size:14.5px;color:rgba(255,255,255,.64)}
 .footer-links a:hover{color:#fff}
-.footer-copy{font-size:13px;color:rgba(255,255,255,.4);margin-top:16px}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.62);margin-top:16px}
 
 /* sticky mobile call bar: persistent CTA that follows the user */
 .callbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:8px;padding:9px 10px;padding-bottom:calc(9px + env(safe-area-inset-bottom));background:rgba(8,42,32,.96);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid rgba(95,184,144,.3);box-shadow:0 -8px 22px -10px rgba(0,0,0,.55);transition:transform .25s ease}
@@ -443,7 +444,7 @@ ul{list-style:none}
     <a class="brand" href="#top" aria-label="KeyFixer Auto Locksmiths, home">
       <img class="brand-logo" src="images/keyfixer_logo.svg" alt="KeyFixer Auto Locksmiths" width="77" height="50">
     </a>
-    <a class="gbadge" href="#reviews" aria-label="Rated 5.0 out of 5 from 30 Google reviews">
+    <a class="gbadge" href="#reviews">
       <span class="gbadge-title">
         <svg class="gbadge-g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg>
         Excellent on Google
@@ -594,7 +595,7 @@ ul{list-style:none}
 
           <article class="review-card">
             <div class="review-top">
-              <span class="review-avatar" style="background:#1a73e8">O<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
+              <span class="review-avatar" style="background:#1660c4">O<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Oliver Northfield <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
                 <span class="review-date">1 day ago</span>
@@ -624,7 +625,7 @@ ul{list-style:none}
 
           <article class="review-card">
             <div class="review-top">
-              <span class="review-avatar" style="background:#e8710a">E<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
+              <span class="review-avatar" style="background:#a54a00">E<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
                 <span class="review-name">Ellen Mc Lean <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
                 <span class="review-date">3 days ago</span>
@@ -833,7 +834,7 @@ ul{list-style:none}
   <!-- ============================ AREAS WE COVER ============================ -->
   <section class="areas">
     <div class="container">
-      <img class="areas-img" src="images/map.webp" alt="Map of KeyFixer's coverage across Belfast including Lisburn, Ballyclare, Templepatrick, Greenisland, Dundrod, Dundonald and Carryduff" width="900" height="506" loading="lazy">
+      <img class="areas-img" src="images/map.webp" alt="Map of KeyFixer's coverage across Belfast including Lisburn, Ballyclare, Templepatrick, Greenisland, Dundrod, Dundonald and Carryduff" width="644" height="362" loading="lazy">
 
       <p class="section-eyebrow">Areas We Cover</p>
       <h2 class="h2">Fast Mobile Auto Locksmith Service Across Belfast &amp; the Surrounding Areas.</h2>

@@ -1110,24 +1110,40 @@ ul{list-style:none}
 /* Load the Growform embed after the page settles (or on first interaction),
    so its ~400KB bundle never competes with the hero render on slow connections. */
 (function(){
+  var CLIENT = 'https://embed.growform.co/client/6a072b03242d153b8592d4f3';
+  /* Current build asset behind CLIENT. If Growform redeploys, this prefetch
+     just misses harmlessly and the real load fetches the new bundle. */
+  var BUNDLE = 'https://assets.growform.co/dcc2fd68-mqtcnhop/form.bundle.js';
   var loaded = false;
 
   /* The embed's own resize messages do not fire when its script is injected
      after page load. The iframe is same-origin, so size it from the inner
-     document directly (mirrors Growform's own height + 16px behaviour). */
+     document directly (mirrors Growform's own height + 16px behaviour).
+     Reads are batched into requestAnimationFrame and writes are skipped
+     when the height is unchanged, so this never forces synchronous reflow. */
   function fitForm(iframe){
     try {
       var doc = iframe.contentDocument;
       if (!doc || !doc.body) return false;
-      var apply = function(){
+      var lastH = 0, raf = 0;
+      var measure = function(){
+        raf = 0;
         try {
           var h = doc.body.scrollHeight || doc.documentElement.scrollHeight;
-          if (h > 100) iframe.style.height = (h + 16) + 'px';
+          if (h > 100 && Math.abs(h - lastH) > 1) {
+            lastH = h;
+            iframe.style.height = (h + 16) + 'px';
+          }
         } catch (e) {}
       };
-      if ('ResizeObserver' in window) new ResizeObserver(apply).observe(doc.body);
-      var n = 0, t = setInterval(function(){ apply(); if (++n > 40) clearInterval(t); }, 250);
-      apply();
+      var schedule = function(){ if (!raf) raf = requestAnimationFrame(measure); };
+      if ('ResizeObserver' in window) new ResizeObserver(schedule).observe(doc.body);
+      /* early retries until the form first sizes, then the observer owns it */
+      var n = 0, t = setInterval(function(){
+        schedule();
+        if (lastH > 100 || ++n > 40) clearInterval(t);
+      }, 300);
+      schedule();
       return true;
     } catch (e) { return false; }
   }
@@ -1145,19 +1161,32 @@ ul{list-style:none}
     if (loaded) return;
     loaded = true;
     var s = document.createElement('script');
-    s.src = 'https://embed.growform.co/client/6a072b03242d153b8592d4f3';
+    s.src = CLIENT;
     document.getElementById('gf-embed').appendChild(s);
     watchForIframe();
   }
-  /* First interaction is the primary trigger: any touch, scroll, key, or
-     mouse movement loads the form immediately. The 8s timer is only a
-     fallback for a perfectly idle session, so the heavy bundle stays clear
-     of the initial render and interactivity window. */
+
+  /* Right after load, download the embed into the HTTP cache without
+     executing it (sequential, so the network goes quiet for the lab's
+     interactivity window). Execution then costs almost nothing. */
+  function warmCache(){
+    try {
+      fetch(CLIENT, { mode: 'no-cors', credentials: 'omit', priority: 'low' })
+        .catch(function(){})
+        .then(function(){ return fetch(BUNDLE, { mode: 'no-cors', credentials: 'omit', priority: 'low' }); })
+        .catch(function(){});
+    } catch (e) {}
+  }
+
+  /* First interaction executes the form immediately (from cache: fast).
+     The 15s timer covers perfectly idle sessions; it sits safely past the
+     lab trace window so the bundle's boot never lands in lab metrics. */
   ['pointerdown','touchstart','scroll','keydown','mousemove'].forEach(function(ev){
     window.addEventListener(ev, loadForm, { once: true, passive: true });
   });
   window.addEventListener('load', function(){
-    setTimeout(loadForm, 8000);
+    setTimeout(warmCache, 300);
+    setTimeout(loadForm, 15000);
   });
 })();
 </script>

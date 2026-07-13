@@ -13,8 +13,34 @@
   gtag('config', 'AW-18305418863');
 </script>
 <script>
+  function kfApplyNumber(formatted_number, mobile_number) {
+    function run() {
+      /* update every tel: link, including buttons with no visible number */
+      document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+        a.setAttribute('href', 'tel:' + mobile_number);
+      });
+      /* swap the visible number text wherever it appears */
+      var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      var nodes = [];
+      while (walker.nextNode()) {
+        var n = walker.currentNode;
+        var tag = n.parentNode && n.parentNode.nodeName;
+        if (tag === 'SCRIPT' || tag === 'STYLE') continue;
+        if (n.nodeValue.indexOf('07460076444') !== -1) nodes.push(n);
+      }
+      nodes.forEach(function (n) {
+        n.nodeValue = n.nodeValue.split('07460076444').join(formatted_number);
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
+  }
   gtag('config', 'AW-18305418863/s3D-CKjKys8cEO-M2phE', {
-    'phone_conversion_number': '07460076444'
+    'phone_conversion_number': '07460076444',
+    'phone_conversion_callback': kfApplyNumber
   });
 </script>
 <title>KeyFixer Auto Locksmiths | Mobile Car Key Replacement &amp; Lockouts in Belfast</title>

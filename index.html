@@ -43,6 +43,22 @@
     'phone_conversion_callback': kfApplyNumber
   });
 </script>
+<script>
+  /* Microsoft Clarity stub: queues any calls made before the tag loads.
+     The tag itself is injected by the deferred loader at the bottom so it
+     never competes with the initial render. */
+  window.clarity = window.clarity || function(){ (window.clarity.q = window.clarity.q || []).push(arguments); };
+</script>
+<script>
+  /* Meta Pixel stub: init and PageView queue here; fbevents.js itself is
+     injected by the deferred loader at the bottom and drains the queue. */
+  !function(f,b,e,v,n){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[]}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1968172937166325');
+  fbq('track', 'PageView');
+</script>
 <title>KeyFixer Auto Locksmiths | Mobile Car Key Replacement &amp; Lockouts in Belfast</title>
 <meta name="description" content="Locked out, lost your keys, or need a car key replacement? KeyFixer mobile auto locksmiths cover Belfast &amp; the surrounding areas across Northern Ireland. £0 call-out fee, 15-30 min response, 24/7. Call 07460076444.">
 <meta name="theme-color" content="#0c3b2e">
@@ -453,6 +469,9 @@ ul{list-style:none}
 </script>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
+/></noscript>
 
 <!-- ============================ HEADER ============================ -->
 <header class="site-header">
@@ -1277,6 +1296,16 @@ ul{list-style:none}
     s.src = CLIENT;
     document.getElementById('gf-embed').appendChild(s);
     watchForIframe();
+    /* Analytics (Clarity + Meta Pixel) ride the same gate, so they never
+       touch the initial render or the lab trace */
+    var c = document.createElement('script');
+    c.async = 1;
+    c.src = 'https://www.clarity.ms/tag/xmahcaqgcw';
+    document.head.appendChild(c);
+    var fb = document.createElement('script');
+    fb.async = 1;
+    fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(fb);
   }
 
   /* Right after load, download the embed into the HTTP cache without

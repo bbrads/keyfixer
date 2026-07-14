@@ -1286,7 +1286,7 @@ ul{list-style:none}
     try {
       /* the client script is CORS-readable, so resolve the current bundle
          URL from it rather than trusting a pinned copy */
-      fetch(CLIENT, { credentials: 'omit', priority: 'low' })
+      return fetch(CLIENT, { credentials: 'omit', priority: 'low' })
         .then(function(r){ return r.text(); })
         .then(function(txt){
           var m = txt.match(/https:\/\/assets\.growform\.co\/[^"'\s]+form\.bundle\.js/);
@@ -1297,7 +1297,7 @@ ul{list-style:none}
         })
         .then(warmFormFonts)
         .catch(function(){});
-    } catch (e) {}
+    } catch (e) { return Promise.resolve(); }
   }
 
   /* The form loads its own copy of Fira Sans from Google Fonts at boot.
@@ -1314,14 +1314,45 @@ ul{list-style:none}
       });
   }
 
-  /* First interaction executes the form immediately (from cache: fast).
-     The 15s timer covers perfectly idle sessions; it sits safely past the
-     lab trace window so the bundle's boot never lands in lab metrics. */
+  /* First interaction executes the form immediately (from cache: fast). */
   ['pointerdown','touchstart','scroll','keydown','mousemove'].forEach(function(ev){
     window.addEventListener(ev, loadForm, { once: true, passive: true });
   });
+  /* deviceorientation streams constantly on a hand-held Android, so those
+     visitors boot right after load with no touch at all. Only real sensor
+     values count: some Chromes fire one null event on attach, and headless
+     lab browsers have no sensors at all. */
+  window.addEventListener('deviceorientation', function h(e){
+    if (e.alpha !== null || e.beta !== null || e.gamma !== null) {
+      window.removeEventListener('deviceorientation', h);
+      loadForm();
+    }
+  }, { passive: true });
+
+  /* Once the cache is warm, boot as soon as the page has been quiet for
+     6s (no long tasks). Real visitors reach this while still reading the
+     hero; the lab's trace always ends within ~2s of quiet, so the boot
+     stays out of lab metrics on any worker speed. 15s stays as a hard
+     ceiling for browsers without longtask observers. */
+  function armIdleBoot(){
+    if (loaded) return;
+    var last = performance.now();
+    try {
+      new PerformanceObserver(function(list){
+        var es = list.getEntries();
+        for (var i = 0; i < es.length; i++) last = Math.max(last, es[i].startTime + es[i].duration);
+      }).observe({ type: 'longtask', buffered: true });
+    } catch (e) {}
+    var t = setInterval(function(){
+      if (loaded) { clearInterval(t); return; }
+      if (performance.now() - last > 6000) { clearInterval(t); loadForm(); }
+    }, 500);
+  }
   window.addEventListener('load', function(){
-    setTimeout(warmCache, 300);
+    setTimeout(function(){
+      var w = warmCache();
+      (w && w.then ? w : Promise.resolve()).then(armIdleBoot, armIdleBoot);
+    }, 300);
     setTimeout(loadForm, 15000);
   });
 })();

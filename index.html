@@ -1152,17 +1152,32 @@ ul{list-style:none}
     iframe.classList.add('gf-live');
   }
 
+  /* Reveal only once the form is genuinely interactive (its option buttons
+     exist), so the facade never gives way to a half-rendered shell. */
+  function whenFormInteractive(iframe, cb){
+    var deadline = Date.now() + 8000;
+    (function poll(){
+      if (revealed) return;
+      var ready = false;
+      try {
+        var doc = iframe.contentDocument;
+        ready = !!(doc && doc.querySelectorAll('div.btn, input, select, textarea').length);
+      } catch (e) {}
+      if (ready || Date.now() > deadline) cb();
+      else setTimeout(poll, 120);
+    })();
+  }
+
   /* Replay the user's facade choice onto the real form, then reveal it
      already on step 2. Any failure falls back to revealing step 1. */
   function tryAutoAdvance(iframe){
-    var doc;
-    try { doc = iframe.contentDocument; } catch (e) { return reveal(iframe); }
     var deadline = Date.now() + 6000;
     (function poll(){
       if (revealed) return;
       var target = null;
       try {
-        var opts = doc.querySelectorAll('div.btn');
+        var doc = iframe.contentDocument;
+        var opts = doc ? doc.querySelectorAll('div.btn') : [];
         for (var i = 0; i < opts.length; i++) {
           if ((opts[i].textContent || '').toLowerCase().indexOf(pendingOpt) !== -1) { target = opts[i]; break; }
         }
@@ -1188,7 +1203,7 @@ ul{list-style:none}
 
   function onFormReady(iframe){
     if (pendingOpt) tryAutoAdvance(iframe);
-    else reveal(iframe);
+    else whenFormInteractive(iframe, function(){ reveal(iframe); });
   }
 
   /* The embed's own resize messages do not fire when its script is injected
@@ -1279,8 +1294,24 @@ ul{list-style:none}
         })
         .catch(function(){
           fetch(BUNDLE, { mode: 'no-cors', credentials: 'omit', priority: 'low' }).catch(function(){});
-        });
+        })
+        .then(warmFormFonts)
+        .catch(function(){});
     } catch (e) {}
+  }
+
+  /* The form loads its own copy of Fira Sans from Google Fonts at boot.
+     Warm those files too (sequentially) so the form never renders in a
+     fallback font and swaps. */
+  function warmFormFonts(){
+    return fetch('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap', { credentials: 'omit', priority: 'low' })
+      .then(function(r){ return r.text(); })
+      .then(function(css){
+        var urls = css.match(/https:\/\/fonts\.gstatic\.com\/[^)]+\.woff2/g) || [];
+        return urls.slice(0, 10).reduce(function(p, u){
+          return p.then(function(){ return fetch(u, { mode: 'no-cors', credentials: 'omit', priority: 'low' }); }).catch(function(){});
+        }, Promise.resolve());
+      });
   }
 
   /* First interaction executes the form immediately (from cache: fast).

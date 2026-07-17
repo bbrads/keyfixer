@@ -14,31 +14,20 @@
 </script>
 <script>
   /* Click to Call conversion (Belfast Operator 1). One delegated listener
-     covers every tel: link on the page. The 700ms failsafe dials even if
-     gtag is blocked, so a tap can never be swallowed. */
-  function gtag_report_conversion(url) {
-    var done = false;
-    var go = function (src) {
-      if (done) return;
-      done = true;
-      console.log('[click-to-call] dialing ' + url + ' via ' + (typeof src === 'string' && src.indexOf('failsafe') !== -1 ? src : 'gtag callback (conversion tracked)'));
-      if (typeof (url) != 'undefined') { window.location = url; }
-    };
-    setTimeout(function () { go('700ms failsafe (gtag blocked or slow)'); }, 700);
-    gtag('event', 'conversion', {
-        'send_to': 'AW-18305418863/j5mgCMmc8NEcEO-M2phE',
-        'value': 1.0,
-        'currency': 'AED',
-        'event_callback': go
-    });
-    return false;
-  }
+     covers every tel: link. A tel: tap opens the dialer WITHOUT unloading
+     the page, so the hit fires directly and the tap is never delayed or
+     blocked: no preventDefault, no callback, no failsafe. If gtag loads
+     late, the event queues in the dataLayer and sends on arrival. */
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
     if (!a) return;
-    e.preventDefault();
     console.log('[click-to-call] tap on "' + (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40) + '" -> ' + a.getAttribute('href'));
-    gtag_report_conversion(a.getAttribute('href'));
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18305418863/j5mgCMmc8NEcEO-M2phE',
+        'value': 1.0,
+        'currency': 'AED'
+    });
+    console.log('[click-to-call] ' + (window.google_tag_manager ? 'conversion sent (gtag active)' : 'conversion queued (gtag not loaded on this device: blocked, or still loading)'));
   });
 </script>
 <script>

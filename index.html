@@ -13,34 +13,30 @@
   gtag('config', 'AW-18305418863');
 </script>
 <script>
-  function kfApplyNumber(formatted_number, mobile_number) {
-    function run() {
-      /* update every tel: link, including buttons with no visible number */
-      document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
-        a.setAttribute('href', 'tel:' + mobile_number);
-      });
-      /* swap the visible number text wherever it appears */
-      var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      var nodes = [];
-      while (walker.nextNode()) {
-        var n = walker.currentNode;
-        var tag = n.parentNode && n.parentNode.nodeName;
-        if (tag === 'SCRIPT' || tag === 'STYLE') continue;
-        if (n.nodeValue.indexOf('07460076444') !== -1) nodes.push(n);
-      }
-      nodes.forEach(function (n) {
-        n.nodeValue = n.nodeValue.split('07460076444').join(formatted_number);
-      });
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', run);
-    } else {
-      run();
-    }
+  /* Click to Call conversion (Belfast Operator 1). One delegated listener
+     covers every tel: link on the page. The 700ms failsafe dials even if
+     gtag is blocked, so a tap can never be swallowed. */
+  function gtag_report_conversion(url) {
+    var done = false;
+    var go = function () {
+      if (done) return;
+      done = true;
+      if (typeof (url) != 'undefined') { window.location = url; }
+    };
+    setTimeout(go, 700);
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18305418863/j5mgCMmc8NEcEO-M2phE',
+        'value': 1.0,
+        'currency': 'AED',
+        'event_callback': go
+    });
+    return false;
   }
-  gtag('config', 'AW-18305418863/s3D-CKjKys8cEO-M2phE', {
-    'phone_conversion_number': '07460076444',
-    'phone_conversion_callback': kfApplyNumber
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+    if (!a) return;
+    e.preventDefault();
+    gtag_report_conversion(a.getAttribute('href'));
   });
 </script>
 <script>

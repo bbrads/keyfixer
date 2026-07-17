@@ -18,12 +18,13 @@
      gtag is blocked, so a tap can never be swallowed. */
   function gtag_report_conversion(url) {
     var done = false;
-    var go = function () {
+    var go = function (src) {
       if (done) return;
       done = true;
+      console.log('[click-to-call] dialing ' + url + ' via ' + (typeof src === 'string' && src.indexOf('failsafe') !== -1 ? src : 'gtag callback (conversion tracked)'));
       if (typeof (url) != 'undefined') { window.location = url; }
     };
-    setTimeout(go, 700);
+    setTimeout(function () { go('700ms failsafe (gtag blocked or slow)'); }, 700);
     gtag('event', 'conversion', {
         'send_to': 'AW-18305418863/j5mgCMmc8NEcEO-M2phE',
         'value': 1.0,
@@ -36,6 +37,7 @@
     var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
     if (!a) return;
     e.preventDefault();
+    console.log('[click-to-call] tap on "' + (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40) + '" -> ' + a.getAttribute('href'));
     gtag_report_conversion(a.getAttribute('href'));
   });
 </script>

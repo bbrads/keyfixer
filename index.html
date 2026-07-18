@@ -1209,7 +1209,7 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
       var ready = false;
       try {
         var doc = iframe.contentDocument;
-        ready = !!(doc && doc.querySelectorAll('div.btn, input, select, textarea').length);
+        ready = !!(doc && (renderedLeaf(doc, /choose an option/i) || doc.querySelector('input, select, textarea')));
       } catch (e) {}
       if (ready || Date.now() > deadline) cb();
       else setTimeout(poll, 120);
@@ -1219,12 +1219,28 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
   /* Replay the user's facade choice onto the real form, then reveal it on
      the next step. The click is retried until the form actually advances
      (hydration can lag the first render); any failure reveals step 1. */
+  /* Rendered-only text search: the form embeds its whole config as a
+     script tag in the iframe body, so body.textContent contains every
+     step's copy and cannot be trusted. Only element leaves count. */
+  function renderedLeaf(doc, re){
+    try {
+      var all = doc.body.getElementsByTagName('*');
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i];
+        if (el.children.length) continue;
+        var tn = el.tagName;
+        if (tn === 'SCRIPT' || tn === 'STYLE' || tn === 'NOSCRIPT') continue;
+        if (re.test(el.textContent || '')) return el;
+      }
+    } catch (e) {}
+    return null;
+  }
   function onStepOne(iframe){
-    try { return (iframe.contentDocument.body.textContent || '').indexOf('Choose an option') !== -1; }
+    try { return !!renderedLeaf(iframe.contentDocument, /choose an option/i); }
     catch (e) { return false; }
   }
   function tryAutoAdvance(iframe){
-    var deadline = Date.now() + 6000;
+    var deadline = Date.now() + 10000;
     var clicked = false;
     (function attempt(){
       if (revealed) return;
@@ -1237,10 +1253,13 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
       var target = null;
       try {
         var doc = iframe.contentDocument;
-        var opts = doc ? doc.querySelectorAll('div.btn') : [];
-        for (var i = 0; i < opts.length; i++) {
-          if ((opts[i].textContent || '').toLowerCase().indexOf(pendingOpt) !== -1) { target = opts[i]; break; }
+        var leaf = renderedLeaf(doc, new RegExp(pendingOpt.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
+        var n = leaf;
+        while (n && n !== doc.body) {
+          if (/\bbtn\b|button/i.test(String(n.className)) || n.tagName === 'LABEL' || n.getAttribute('role') === 'button') { target = n; break; }
+          n = n.parentElement;
         }
+        if (!target && leaf) target = leaf.parentElement || leaf;
       } catch (e) {}
       if (!target) {
         if (Date.now() < deadline) return setTimeout(attempt, 150);
@@ -1257,17 +1276,34 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
         if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
         clicked = true;
       } catch (e) {}
-      setTimeout(function(){
+      /* the form advances after its own short delay; wait for it rather
+         than re-clicking into the transition */
+      var wait0 = Date.now();
+      (function verify(){
         if (revealed) return;
-        if (!onStepOne(iframe) || Date.now() > deadline) reveal(iframe);
-        else attempt();
-      }, 450);
+        if (!onStepOne(iframe)) {
+          console.log('[facade] choice carried through, revealing on the next step');
+          return reveal(iframe);
+        }
+        if (Date.now() - wait0 < 4000 && Date.now() < deadline) return setTimeout(verify, 250);
+        if (Date.now() < deadline) return attempt();
+        console.log('[facade] could not carry the choice through in time, revealing step 1');
+        reveal(iframe);
+      })();
     })();
   }
 
   function onFormReady(iframe){
-    if (pendingOpt) tryAutoAdvance(iframe);
-    else whenFormInteractive(iframe, function(){ reveal(iframe); });
+    /* decide the route only once the form is interactive, so a facade tap
+       made while the form was booting still gets replayed */
+    whenFormInteractive(iframe, function(){
+      if (pendingOpt) {
+        console.log('[facade] replaying "' + pendingOpt + '" onto the form');
+        tryAutoAdvance(iframe);
+      } else {
+        reveal(iframe);
+      }
+    });
   }
 
   /* The embed's own resize messages do not fire when its script is injected
@@ -1331,6 +1367,7 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
     var all = skel.querySelectorAll('.gf-skel-btn');
     for (var i = 0; i < all.length; i++) all[i].classList.remove('is-loading');
     b.classList.add('is-loading');
+    console.log('[facade] tapped "' + pendingOpt + '", form is ' + (loaded ? 'already booting' : 'starting now'));
     loadForm();
   });
 
@@ -1385,7 +1422,19 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
         return urls.slice(0, 10).reduce(function(p, u){
           return p.then(function(){ return fetch(u, { mode: 'no-cors', credentials: 'omit', priority: 'low' }); }).catch(function(){});
         }, Promise.resolve());
-      });
+      })
+      .then(warmFormImages);
+  }
+
+  /* The key-type step shows Cloudinary images; the iframe shares this
+     page's HTTP cache, so warming them here makes that step instant */
+  function warmFormImages(){
+    return [
+      'https://res.cloudinary.com/dqnjggegp/image/upload/w_408/v1782817544/uploads/bf9mx17tnokue1wbqmvj.webp',
+      'https://res.cloudinary.com/dqnjggegp/image/upload/w_408/v1782817540/uploads/xrvgnhuvsjwufv2t4crk.webp'
+    ].reduce(function(p, u){
+      return p.then(function(){ return fetch(u, { mode: 'no-cors', credentials: 'omit', priority: 'low' }); }).catch(function(){});
+    }, Promise.resolve());
   }
 
   /* First interaction executes the form immediately (from cache: fast). */

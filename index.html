@@ -1189,7 +1189,7 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
   /* Fallback only: warmCache resolves the current bundle URL from CLIENT at
      runtime, so a Growform redeploy cannot go stale. */
   var BUNDLE = 'https://assets.growform.co/dcc2fd68-mqtcnhop/form.bundle.js';
-  var loaded = false, revealed = false, pendingOpt = null;
+  var loaded = false, revealed = false, pendingOpt = null, clientText = null;
   var skel = document.getElementById('gf-skel');
 
   /* Swap the facade for the booted form */
@@ -1212,7 +1212,7 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
         ready = !!(doc && (renderedLeaf(doc, /choose an option/i) || doc.querySelector('input, select, textarea')));
       } catch (e) {}
       if (ready || Date.now() > deadline) cb();
-      else setTimeout(poll, 120);
+      else setTimeout(poll, 100);
     })();
   }
 
@@ -1285,7 +1285,7 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
           console.log('[facade] choice carried through, revealing on the next step');
           return reveal(iframe);
         }
-        if (Date.now() - wait0 < 4000 && Date.now() < deadline) return setTimeout(verify, 250);
+        if (Date.now() - wait0 < 4000 && Date.now() < deadline) return setTimeout(verify, 150);
         if (Date.now() < deadline) return attempt();
         console.log('[facade] could not carry the choice through in time, revealing step 1');
         reveal(iframe);
@@ -1344,8 +1344,8 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
        the observer owns steady-state resizing */
     var n = 0, t = setInterval(function(){
       measure();
-      if ((announced && lastH > 100) || ++n > 100) clearInterval(t);
-    }, 250);
+      if ((announced && lastH > 100) || ++n > 160) clearInterval(t);
+    }, 150);
     measure();
     return true;
   }
@@ -1355,8 +1355,8 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
     var t = setInterval(function(){
       var iframe = document.querySelector('#gf-embed iframe');
       if (iframe && fitForm(iframe)) clearInterval(t);
-      else if (++tries > 75) clearInterval(t);
-    }, 200);
+      else if (++tries > 150) clearInterval(t);
+    }, 100);
   }
 
   /* Facade taps: remember the choice, show a spinner, boot the form */
@@ -1375,7 +1375,8 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
     if (loaded) return;
     loaded = true;
     var s = document.createElement('script');
-    s.src = CLIENT;
+    if (clientText) s.textContent = clientText;
+    else s.src = CLIENT;
     document.getElementById('gf-embed').appendChild(s);
     watchForIframe();
     /* Analytics (Clarity + Meta Pixel) ride the same gate, so they never
@@ -1400,6 +1401,9 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
       return fetch(CLIENT, { credentials: 'omit', priority: 'low' })
         .then(function(r){ return r.text(); })
         .then(function(txt){
+          /* keep the client text: their server sends no cache headers, so
+             injecting this inline at boot time saves a network round trip */
+          if (txt && txt.indexOf('growform') !== -1) clientText = txt;
           var m = txt.match(/https:\/\/assets\.growform\.co\/[^"'\s]+form\.bundle\.js/);
           return fetch((m && m[0]) || BUNDLE, { mode: 'no-cors', credentials: 'omit', priority: 'low' });
         })

@@ -1185,7 +1185,7 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
 /* Load the Growform embed after the page settles (or on first interaction),
    so its ~400KB bundle never competes with the hero render on slow connections. */
 (function(){
-  var CLIENT = 'https://embed.growform.co/client/6a072b03242d153b8592d4f3';
+  var CLIENT = 'https://embed.growform.co/client/6a5b17aec3cfef7bcb2ded82';
   /* Fallback only: warmCache resolves the current bundle URL from CLIENT at
      runtime, so a Growform redeploy cannot go stale. */
   var BUNDLE = 'https://assets.growform.co/dcc2fd68-mqtcnhop/form.bundle.js';
@@ -1216,12 +1216,24 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
     })();
   }
 
-  /* Replay the user's facade choice onto the real form, then reveal it
-     already on step 2. Any failure falls back to revealing step 1. */
+  /* Replay the user's facade choice onto the real form, then reveal it on
+     the next step. The click is retried until the form actually advances
+     (hydration can lag the first render); any failure reveals step 1. */
+  function onStepOne(iframe){
+    try { return (iframe.contentDocument.body.textContent || '').indexOf('Choose an option') !== -1; }
+    catch (e) { return false; }
+  }
   function tryAutoAdvance(iframe){
     var deadline = Date.now() + 6000;
-    (function poll(){
+    var clicked = false;
+    (function attempt(){
       if (revealed) return;
+      if (!onStepOne(iframe)) {
+        /* after a click this means the step advanced: reveal. Before any
+           click the form is still rendering step 1: keep waiting. */
+        if (clicked || Date.now() > deadline) return reveal(iframe);
+        return setTimeout(attempt, 150);
+      }
       var target = null;
       try {
         var doc = iframe.contentDocument;
@@ -1230,22 +1242,26 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
           if ((opts[i].textContent || '').toLowerCase().indexOf(pendingOpt) !== -1) { target = opts[i]; break; }
         }
       } catch (e) {}
-      if (target) {
-        try {
-          var r = target.getBoundingClientRect();
-          var o = { bubbles: true, cancelable: true, view: iframe.contentWindow, clientX: r.left + r.width/2, clientY: r.top + r.height/2 };
-          ['pointerdown','mousedown','pointerup','mouseup','click'].forEach(function(t){
-            var Ev = t.indexOf('pointer') === 0 ? (iframe.contentWindow.PointerEvent || MouseEvent) : MouseEvent;
-            target.dispatchEvent(new Ev(t, o));
-          });
-          var radio = target.querySelector('input');
-          if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
-        } catch (e) {}
-        setTimeout(function(){ reveal(iframe); }, 350);
-        return;
+      if (!target) {
+        if (Date.now() < deadline) return setTimeout(attempt, 150);
+        return reveal(iframe);
       }
-      if (Date.now() < deadline) setTimeout(poll, 150);
-      else reveal(iframe);
+      try {
+        var r = target.getBoundingClientRect();
+        var o = { bubbles: true, cancelable: true, view: iframe.contentWindow, clientX: r.left + r.width/2, clientY: r.top + r.height/2 };
+        ['pointerdown','mousedown','pointerup','mouseup','click'].forEach(function(t){
+          var Ev = t.indexOf('pointer') === 0 ? (iframe.contentWindow.PointerEvent || MouseEvent) : MouseEvent;
+          target.dispatchEvent(new Ev(t, o));
+        });
+        var radio = target.querySelector('input');
+        if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
+        clicked = true;
+      } catch (e) {}
+      setTimeout(function(){
+        if (revealed) return;
+        if (!onStepOne(iframe) || Date.now() > deadline) reveal(iframe);
+        else attempt();
+      }, 450);
     })();
   }
 

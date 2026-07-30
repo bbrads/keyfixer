@@ -220,17 +220,17 @@ ul{list-style:none}
 }
 
 /* ============ CALL PANEL ============ */
-.quote{background:#fff;padding:4px 0 40px;scroll-margin-top:78px}
-.callpanel-eyebrow{font-size:21px;font-weight:800;color:var(--ink);text-align:center;margin-bottom:14px}
+.quote{background:#fff;padding:10px 0 44px;scroll-margin-top:78px}
+.call-card{max-width:600px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 20px 22px;box-shadow:0 12px 30px -18px rgba(12,59,46,.35)}
+.callpanel-eyebrow{font-size:22px;line-height:1.35;font-weight:800;color:var(--ink);text-align:center;margin:0 0 18px}
 .quote .btn--hero{max-width:560px;margin:0 auto}
-.callpanel-number{text-align:center;margin:14px 0 6px}
+.callpanel-number{text-align:center;margin:14px 0 0}
+.call-assure{text-align:center;font-size:13.5px;font-weight:600;color:var(--body);margin:8px 0 14px}
 .callpanel-number a{font-size:38px;font-weight:800;letter-spacing:1px;color:var(--green-ink)}
-.quote .cta-note{margin-bottom:16px}
-.call-steps{max-width:480px;margin:0 auto 16px;padding:0;text-align:left;display:flex;flex-direction:column;gap:9px}
-.call-steps li{list-style:none;display:flex;align-items:flex-start;gap:9px;font-size:15px;color:var(--body)}
-.cs-tick{flex:0 0 auto;width:18px;height:18px;color:var(--green-ink);margin-top:1px}
-.cs-tick svg{width:18px;height:18px;display:block}
-.open-now{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14.5px;font-weight:700;color:var(--green-ink);margin:0 0 12px}
+.call-steps{max-width:480px;margin:0 auto 20px;padding:0;text-align:left;display:flex;flex-direction:column;gap:11px}
+.call-steps li{list-style:none;display:flex;align-items:flex-start;gap:10px;font-size:15px;line-height:1.45;color:var(--body)}
+.cs-num{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:-1px}
+.open-now{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:700;color:var(--green-ink);background:rgba(46,194,126,.12);border-radius:999px;padding:6px 15px;width:max-content;margin:0 auto 14px}
 .open-dot{width:9px;height:9px;border-radius:50%;background:#2ec27e;position:relative}
 .open-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(46,194,126,.5);animation:opulse 1.6s ease-out infinite}
 @keyframes opulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.3);opacity:0}}
@@ -457,6 +457,8 @@ ul{list-style:none}
   .review-card{flex-basis:300px;max-width:300px}
   .hero,.how,.final,.areas{padding-top:66px;padding-bottom:66px}
   .quote{padding-top:14px;padding-bottom:48px}
+  .call-card{padding:22px 14px 20px;border-radius:14px}
+  .callpanel-eyebrow{font-size:20px}
 }
 </style>
 <script type="application/ld+json">
@@ -584,16 +586,19 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
   <!-- ============================ CALL PANEL ============================ -->
   <section class="quote" id="quote">
     <div class="container">
-      <p class="callpanel-eyebrow">Call me for an instant price, then I come to you&#128071;</p>
-      <p class="open-now"><span class="open-dot" aria-hidden="true"></span>Open now, I answer day and night</p>
-      <a class="btn btn--hero" href="tel:+447000000001"><span class="only-mobile">Tap to Call Me Now</span><span class="only-desktop">Call Me Now</span></a>
-      <p class="callpanel-number"><a href="tel:+447000000001">07000 000001</a></p>
-      <ul class="call-steps" aria-label="What happens when you call">
-        <li><span class="cs-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg></span>You tell me what's happened, your car's year, make, model, and where you are</li>
-        <li><span class="cs-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg></span>I give you a fixed price there and then, no obligation</li>
-        <li><span class="cs-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 6.5"/></svg></span>I head your way with an honest arrival time</li>
-      </ul>
-      <p class="form-note"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>I can come to you anywhere in Kent.</p>
+      <div class="call-card">
+        <p class="open-now"><span class="open-dot" aria-hidden="true"></span>Open now, I answer day and night</p>
+        <h2 class="callpanel-eyebrow">One call gets you a fixed price and help on the way&#128071;</h2>
+        <ol class="call-steps" aria-label="What happens when you call">
+          <li><span class="cs-num" aria-hidden="true">1</span>You tell me what's happened, your car's year, make, model, and where you are</li>
+          <li><span class="cs-num" aria-hidden="true">2</span>You get a fixed price there and then, no obligation</li>
+          <li><span class="cs-num" aria-hidden="true">3</span>I head your way with an honest arrival time</li>
+        </ol>
+        <a class="btn btn--hero" href="tel:+447000000001"><span class="only-mobile">Tap to Call Me Now</span><span class="only-desktop">Call Me Now</span></a>
+        <p class="callpanel-number"><a href="tel:+447000000001">07000 000001</a></p>
+        <p class="call-assure">Free quote &#183; Fixed price &#183; No hidden fees</p>
+        <p class="form-note"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>Wherever you are in Kent, I come to&#160;you.</p>
+      </div>
     </div>
   </section>
 
@@ -645,16 +650,16 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
           </article>
           <article class="review-card">
             <div class="review-top">
-              <span class="review-avatar" style="background:#a54a00">A<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
+              <span class="review-avatar" style="background:#c5221f">O<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
-                <span class="review-name">Adam Melville <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                <span class="review-name">Olivia Stewart <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
                 <span class="review-date">2 days ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Amazing locksmith, very friendly. Was here within 30 mins. Brilliant.</p>
+            <p class="review-text">Super service this morning! My car locked with my keys and dog inside. I made a very panicked phone call and I had someone with me within 25 minutes and the car was unlocked straight away. Can’t thank you enough for resolving a stressful situation so quickly 🙏🏻</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
           <article class="review-card">
@@ -687,16 +692,16 @@ src="https://www.facebook.com/tr?id=1968172937166325&ev=PageView&noscript=1"
           </article>
           <article class="review-card">
             <div class="review-top">
-              <span class="review-avatar" style="background:#c5221f">O<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
+              <span class="review-avatar" style="background:#a54a00">A<span class="gmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.5 12.2c0-.8-.07-1.6-.2-2.3H12v4.5h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-1.95 3.2-4.85 3.2-8.3Z"/><path fill="#34A853" d="M12 23c2.9 0 5.35-.97 7.1-2.6l-3.6-2.8c-1 .67-2.3 1.07-3.5 1.07-2.7 0-5-1.83-5.83-4.3H2.45v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6.17 14.37a6.6 6.6 0 0 1 0-4.74V6.73H2.45a11 11 0 0 0 0 9.84l3.72-2.2Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .55 4.12 1.62l3.08-3.08A11 11 0 0 0 2.45 6.73l3.72 2.9C7 7.2 9.3 5.4 12 5.4Z"/></svg></span></span>
               <span class="review-meta">
-                <span class="review-name">Olivia Stewart <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                <span class="review-name">Adam Melville <span class="verified" role="img" aria-label="Verified"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
                 <span class="review-date">1 week ago</span>
               </span>
             </div>
             <div class="review-stars" role="img" aria-label="5 out of 5 stars">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 2.9 6.26L21.5 9.2l-4.75 4.64L17.8 21 12 17.27 6.2 21l1.05-7.16L2.5 9.2l6.6-.94Z"/></svg>
             </div>
-            <p class="review-text">Super service this morning! My car locked with my keys and dog inside. I made a very panicked phone call and I had someone with me within 25 minutes and the car was unlocked straight away. Can’t thank you enough for resolving a stressful situation so quickly 🙏🏻</p>
+            <p class="review-text">Amazing locksmith, very friendly. Was here within 30 mins. Brilliant.</p>
             <button class="review-readmore" type="button" data-open-reviews>Read more</button>
           </article>
           <article class="review-card">
